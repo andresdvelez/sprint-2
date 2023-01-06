@@ -23,6 +23,9 @@ const cvcCard = document.querySelector(".card-back__cvc");
 const cvcInput = document.querySelector("#cardCvc");
 const cvcErrorDiv = document.querySelector(".form__input-cvc--error");
 
+// Form
+const cardForm = document.querySelector("#cardForm");
+
 // Dinamical name
 nameInput.addEventListener("input", () => {
   if (nameInput.value == "") {
@@ -148,6 +151,7 @@ confirmBtn.addEventListener("click", (e) => {
   ) {
     formSection.style.display = "none";
     thanksSection.style.display = "block";
+    onSubmit();
   }
 });
 
@@ -178,4 +182,15 @@ const verifyLetters = (input, errorDiv) => {
   } else {
     hideError(input, errorDiv);
   }
+};
+
+const onSubmit = () => {
+  const newCard = {
+    name: nameInput.value,
+    number: numInput.value,
+    yearCard: yearInput.value,
+    cvc: cvcInput.value,
+  };
+
+  localStorage.setItem("card", JSON.stringify(newCard));
 };
